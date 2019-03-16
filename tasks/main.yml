@@ -1,0 +1,27 @@
+---
+
+#- include: golang.yml
+#  tags: [ dev, programming ]
+
+- include: zsh.yml
+  tags: [ zsh, cli, terminal ]
+
+- include: vim.yml
+  tags: [ vim, cli, terminal ]
+
+- import_tasks: pythonz.yml
+  tags: [ dev, programming ]
+
+- include_tasks: python.yml
+  tags: [ dev, programming ]
+  with_items: "{{ python_versions }}"
+  loop_control:
+    loop_var: python_version
+  when: python_versions is defined
+
+#- include_tasks: virtualenv.yml
+#  tags: [ dev, programming ]
+#  with_dict: "{{ virtualenvs }}"
+#  loop_control:
+#    loop_var: virtualenv
+#  when: virtualenvs is defined
